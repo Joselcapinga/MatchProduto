@@ -1,5 +1,10 @@
 # MatchProduto
+<<<<<<< HEAD
 App de match de Produto, Objetivo do App é proporcionar um ambiente de cadastro de diversos tipos de produtos e suas trocas.
+=======
+App de MP (Match de Produto).
+Objetivo do App é proporcionar um ambiente de cadastro e troca de diversos tipos de produtos, através de match entre dois usuários.
+>>>>>>> 05f66297929788bb7654c9b9f0b60c3c3461a5cd
 
 
 # Instalação 
@@ -30,6 +35,13 @@ execute no seu terminal a linha abaixo
 
 em seguida no seu terminal e navegador será gerado qrcode, escaneia com celular, o expo carregara o app no seu celular.
 
+<<<<<<< HEAD
 **OBS**__: O celular o pc devem estar conectados na mesma rede de internet.
 
 "Bons testes :) "
+=======
+**OBS**__: O celular e pc devem estar conectados na mesma rede de internet.
+
+"Bons testes :) "
+
+>>>>>>> 05f66297929788bb7654c9b9f0b60c3c3461a5cd
