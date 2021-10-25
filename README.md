@@ -1,2 +1,3 @@
 # MatchProduto
-App de match de Produto, Objetivo do App é proporcionar um ambiente de cadastro de diversos tipos de produtos e suas trocas.
+App de MP (Match de Produto).
+Objetivo do App é proporcionar um ambiente de cadastro e troca de diversos tipos de produtos, através de match entre dois usuários.
