@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Button, ScrollView} from 'react-native';
 
-import UserController from '../controller/users/UserController';
+import UserController from '../controller/user/UserController';
 import styles from '../assets/style';
 
 export default function Register({navigation})
