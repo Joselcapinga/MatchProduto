@@ -31,7 +31,7 @@ execute no seu terminal a linha abaixo
 
 em seguida no seu terminal e navegador será gerado qrcode, escaneia com celular, o expo carregara o app no seu celular.
 
-**OBS**__: O celular o pc devem estar conectados na mesma rede de internet.
+**OBS**__: O celular e pc devem estar conectados na mesma rede de internet.
 
 "Bons testes :) "
 
