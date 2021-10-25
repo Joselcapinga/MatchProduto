@@ -13,8 +13,16 @@ function App() {
   return (
     
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home2">
+      <Stack.Navigator initialRouteName="Login">
         
+      <Stack.Screen name="Login" component={Login} 
+            options={{ title: 'Login', 
+            headerStyle: {backgroundColor: '#e7305b'}, 
+            headerTintColor: '#fff',
+            headerTitleStyle: {fontWeight: 'bold'},
+            headerTitleAlign: 'center',
+        }}
+          />
 
         <Stack.Screen name="Home2" component={Home2} 
             options={{ title: 'Home2', 
@@ -35,14 +43,7 @@ function App() {
         }}
           />
         
-        <Stack.Screen name="Login" component={Login} 
-            options={{ title: 'Login', 
-            headerStyle: {backgroundColor: '#e7305b'}, 
-            headerTintColor: '#fff',
-            headerTitleStyle: {fontWeight: 'bold'},
-            headerTitleAlign: 'center',
-        }}
-          />
+        
 
         <Stack.Screen name="Register" component={Register} 
             options={{ title: 'Crie Uma Conta', 

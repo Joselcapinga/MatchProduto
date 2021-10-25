@@ -1,0 +1,14 @@
+Dados do Integrante
+Nome: José Lohame Capinha
+RA: 2111055
+
+Projeto MatchProduto
+
+App MP (Match de Produto), objetivo proporcionar um ambiente de cadastro e troca de 
+diversos tipos de produtos, através de match entre dois usuários.
+
+Este app esta sendo desenvolvido com framework Js React-Native.
+
+As instruções de instalação do ambiente de desenvolvido do App encotra-se no arquivo 
+README.md.
+

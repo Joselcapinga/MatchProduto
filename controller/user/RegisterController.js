@@ -41,4 +41,5 @@ export default class RegisterController {
            this.ErroSenha = "Preencha o campo nome";
    }
 
+
 }
