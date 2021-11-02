@@ -14,7 +14,7 @@ execute no seu terminal a linha abaixo
 
 3. git clone https://github.com/Joselcapinga/MatchProduto.git
 
-4. cd mobile
+4. cd MatchProduto
 
 execute no seu terminal a linha abaixo
 
@@ -24,7 +24,7 @@ execute no seu terminal a linha abaixo
 
 7. expo install firebase
 
-# Para testar no celular abixe o expo go, no celular
+# Para testar no celular abixe o app expo go
 
 execute no seu terminal a linha abaixo
 
