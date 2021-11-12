@@ -33,7 +33,6 @@ function App() {
         }}
           />
 
-
         <Stack.Screen name="Home" component={Home} 
             options={{ title: 'Home', 
             headerStyle: {backgroundColor: '#e7305b'}, 
@@ -43,8 +42,6 @@ function App() {
         }}
           />
         
-        
-
         <Stack.Screen name="Register" component={Register} 
             options={{ title: 'Crie Uma Conta', 
             headerStyle: {backgroundColor: '#e7305b'}, 

@@ -1,25 +1,41 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Button, ScrollView} from 'react-native';
 
-import UserController from '../controller/user/UserController';
+import RegisterController from '../controller/user/RegisterController';
 import styles from '../assets/style';
 
 export default function Register({navigation})
 {
+    
+    //var
+    const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
     const [senha, setSenha] = useState(null);
+    const [confSenha, setConfirmeSenha] = useState(null);
+    
+    // mensagem erros
+    const [erroName, setErroName] = useState(null);
     const [erroEmail, setErroEmail] = useState(null);
     const [erroSenha, setErroSenha] = useState(null);
-    
-    const User = new UserController();
+    const [erroConfirmSenha, setErroConfirmSenha] = useState(null);
+    const [erroSenhaDiferente, setErroSenhaDiferente] = useState(null);
 
-    function login()
+
+    const User = new RegisterController(name, email, senha, confSenha);
+
+    
+    function chek_register()
     {
-        User.validaInputs(email, senha);
+        
+        User.validaInputs();
+        setErroName(User.ErroName);
         setErroEmail(User.ErroEmail);
         setErroSenha(User.ErroSenha);
+        setErroConfirmSenha(User.ErroConfirmeSenha);
+        setErroSenhaDiferente(User.ErroSenhaDiferente);
     }
 
+    //register firebase
     const doUserRegistration = async function () {
         // Note that these values come from state variables that we've declared before
         const usernameValue = username;
@@ -51,11 +67,11 @@ export default function Register({navigation})
             <TextInput
                 placeholder="Informe seu nome"
                 style={styles.FormInput}
-                onChangeText={email => setEmail(email)}
-                value={email}
+                onChangeText={name => setName(name)}
+                value={name}
                 >
             </TextInput>
-            <Text style={styles.textErro}>{erroEmail}</Text>
+            <Text style={styles.textErro}>{erroName}</Text>
 
             <Text style={styles.FormLabel}>Email</Text>
             <TextInput
@@ -79,21 +95,25 @@ export default function Register({navigation})
 
             <Text style={styles.FormLabel}>Confirme Senha</Text>
             <TextInput
-                placeholder="Informe sua senha"
+                placeholder="Informe confirmação da senha"
                 style={styles.FormInput}
-                onChangeText={senha => setSenha(senha)}
-                value={senha}
+                onChangeText={confSenha => setConfirmeSenha(confSenha)}
+                value={confSenha}
                 >
             </TextInput>
-            <Text style={styles.textErro}>{erroSenha}</Text>
+            <Text style={styles.textErro}>{erroConfirmSenha}</Text>
+            <Text style={styles.textErro}>{erroSenhaDiferente}</Text>
 
             <TouchableOpacity 
                 title="Login"
                 style={styles.ButtonLogin}
-                onPress={() => login()} 
+                onPress={() => chek_register()} 
                 >
                 <Text style={styles.textbuttonLogin}>Cadastrar</Text>
             </TouchableOpacity>
+
+            
+
             </ScrollView>
         </View>
     </View>

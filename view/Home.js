@@ -1,22 +1,24 @@
 import React, {useState} from 'react';
 import {
+    StyleSheet,
     View, 
     Text, 
     TextInput, 
     TouchableOpacity, 
     Button, 
     FlatList,
-    StyleSheet,
     VirtualizedList,
-    StatusBar
+    StatusBar,
+    Image,
 } from 'react-native';
+
+import logo from '../assets/icon.png';
 
 import HomeController from '../controller/HomeController';
 import styles from '../assets/style';
 
 export default function Home({navigation})
 {
-
     const items = [
         {id: '0', text: 'view'},
         {id: '1', text: 'Text'},
@@ -27,22 +29,16 @@ export default function Home({navigation})
 
     return (
 
-        <FlatList
+        /*<FlatList
             style={styles.container}
             data={items}
             renderItem={({ item }) => <Text style={styles.row}>{item.text}</Text>}
             keyExtractor={(item) => item.id}
-        />
+        />*/
+
+        <View style={styles.container}>
+             <Text>Login</Text>
+        </View>
+
 );}
-/*
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    row: {
-      padding: 15,
-      marginBottom: 5,
-      backgroundColor: 'skyblue',
-    },
-  })
-  */
+
