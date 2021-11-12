@@ -37,7 +37,7 @@ export default function Home({navigation})
         />*/
 
         <View style={styles.container}>
-             <Text>Login</Text>
+             <Text>Home</Text>
         </View>
 
 );}

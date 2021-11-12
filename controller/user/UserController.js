@@ -34,7 +34,7 @@ export default class UserController {
 
    loginValidate()
    {
-      const auth = getAuth();
+      /*const auth = getAuth();
       signInWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
         // Signed in
@@ -46,9 +46,15 @@ export default class UserController {
         const errorMessage = error.message;
         alert(errorCode, errorMessage);
         return
-      });
+      });*/
 
-      alert("login realizado com sucesso");
+      if(this.email === "joselc@gmail.com" && this.senha === "123456")
+      {
+        return 1;
+      }
+      else return 0;
+
+      //alert("login realizado com sucesso");
    }
 
 }

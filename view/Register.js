@@ -89,6 +89,7 @@ export default function Register({navigation})
                 style={styles.FormInput}
                 onChangeText={senha => setSenha(senha)}
                 value={senha}
+                maxLength={8}
                 >
             </TextInput>
             <Text style={styles.textErro}>{erroSenha}</Text>
@@ -99,6 +100,7 @@ export default function Register({navigation})
                 style={styles.FormInput}
                 onChangeText={confSenha => setConfirmeSenha(confSenha)}
                 value={confSenha}
+                maxLength={8}
                 >
             </TextInput>
             <Text style={styles.textErro}>{erroConfirmSenha}</Text>

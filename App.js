@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Login from './view/Login';
 import Register from './view/Register';
 import Home from './view/Home';
-import Home2 from './view/Home2';
+//import Home2 from './view/Home2';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,15 +17,6 @@ function App() {
         
       <Stack.Screen name="Login" component={Login} 
             options={{ title: 'Login', 
-            headerStyle: {backgroundColor: '#e7305b'}, 
-            headerTintColor: '#fff',
-            headerTitleStyle: {fontWeight: 'bold'},
-            headerTitleAlign: 'center',
-        }}
-          />
-
-        <Stack.Screen name="Home2" component={Home2} 
-            options={{ title: 'Home2', 
             headerStyle: {backgroundColor: '#e7305b'}, 
             headerTintColor: '#fff',
             headerTitleStyle: {fontWeight: 'bold'},
