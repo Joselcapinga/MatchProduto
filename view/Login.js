@@ -10,6 +10,7 @@ import {
 
 } from 'react-native';
 
+
 import UserController from '../controller/user/UserController';
 import styles from '../assets/style';
 
@@ -22,14 +23,20 @@ export default function Login({navigation})
   const [erroEmail, setErroEmail] = useState(null);
   const [erroSenha, setErroSenha] = useState(null);
   
-  const User = new UserController();
+  const [users, setUsers] = useState(null);
 
+  const User = new UserController();
+  
   function login()
   {
     User.validaInputs(email, senha);
     setErroEmail(User.ErroEmail);
     setErroSenha(User.ErroSenha);
+    const s = User.AllUser();
+    
+    console.log(s);
 
+    return;
     if(User.loginValidate() === 1)
     {
         navigation.navigate('Home');
@@ -58,11 +65,12 @@ export default function Login({navigation})
                     style={styles.FormInput}
                     onChangeText={senha => setSenha(senha)}
                     value={senha}
-                    keyboardType="password"
+                    password={true}
                     maxLength={8}
                     >
                 </TextInput>
                 <Text style={styles.textErro}>{erroSenha}</Text>
+
 
                 <TouchableOpacity 
                     title="Login"

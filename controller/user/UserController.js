@@ -1,14 +1,20 @@
+import api from '../../config/Axios';
+
 export default class UserController {
 
     email = String;
     senha = String;
     ErroEmail = String;
     ErroSenha = String;
+    users = []; 
 
     constructor(email, senha)
     {
         this.email = null;
         this.senha = null;
+        this.users = [];
+        this.ErroEmail = null;
+        this.ErroSenha = null;
     }
 
     validaInputs(email, senha){
@@ -53,8 +59,13 @@ export default class UserController {
         return 1;
       }
       else return 0;
-
       //alert("login realizado com sucesso");
    }
+
+   async AllUser()
+   {
+     const s = await api.get('users'); 
+     return  s.data.usuarios;      
+   } 
 
 }

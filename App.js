@@ -5,6 +5,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import Login from './view/Login';
 import Register from './view/Register';
 import Home from './view/Home';
+import ImagePickerExample from './view/ImagePickerExample';
+
 //import Home2 from './view/Home2';
 
 const Stack = createNativeStackNavigator();
@@ -42,6 +44,15 @@ function App() {
         }}
           />
           
+          <Stack.Screen name="ImagePickerExample" component={ImagePickerExample} 
+            options={{ title: 'Crie Uma Conta', 
+            headerStyle: {backgroundColor: '#e7305b'}, 
+            headerTintColor: '#fff',
+            headerTitleStyle: {fontWeight: 'bold'},
+            headerTitleAlign: 'center',
+        }}
+          />
+
       </Stack.Navigator>
     </NavigationContainer>
 

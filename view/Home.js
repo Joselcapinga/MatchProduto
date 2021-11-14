@@ -13,18 +13,23 @@ import {
 } from 'react-native';
 
 import logo from '../assets/icon.png';
-
 import HomeController from '../controller/HomeController';
+import UserController from '../controller/user/UserController';
 import styles from '../assets/style';
 
 export default function Home({navigation})
 {
+
+    const users = new UserController();
+
+
     const items = [
         {id: '0', text: 'view'},
         {id: '1', text: 'Text'},
         {id: '2', text: 'Img'},
         {id: '3', text: 'view'}
     ];
+
 
 
     return (

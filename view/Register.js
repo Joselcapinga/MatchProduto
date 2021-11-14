@@ -26,7 +26,6 @@ export default function Register({navigation})
     
     function chek_register()
     {
-        
         User.validaInputs();
         setErroName(User.ErroName);
         setErroEmail(User.ErroEmail);
