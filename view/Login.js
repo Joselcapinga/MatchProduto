@@ -10,7 +10,6 @@ import {
 
 } from 'react-native';
 
-
 import UserController from '../controller/user/UserController';
 import styles from '../assets/style';
 
@@ -34,8 +33,9 @@ export default function Login({navigation})
     setErroSenha(User.ErroSenha);
     const s = User.AllUser();
     
-    console.log(s);
+    //console.log(s);
 
+    navigation.navigate('Home');
     return;
     if(User.loginValidate() === 1)
     {

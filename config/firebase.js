@@ -1,7 +1,6 @@
 import * as firebase from 'firebase/app';
 
 const firebaseConfig = {
-
   apiKey: "AIzaSyAeoGqYLiikhg6W-c2aGxvnVATDHHjOz10",
   authDomain: "licon-db9be.firebaseapp.com",
   projectId: "licon-db9be",

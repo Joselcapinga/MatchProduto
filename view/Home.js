@@ -12,6 +12,7 @@ import {
     Image,
 } from 'react-native';
 
+
 import logo from '../assets/icon.png';
 import HomeController from '../controller/HomeController';
 import UserController from '../controller/user/UserController';

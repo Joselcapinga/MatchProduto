@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Button, ScrollView} from 'react-native';
 
 import RegisterController from '../controller/user/RegisterController';
+import {Iconicons} from '@expo/vector-icons';
 import styles from '../assets/style';
 
 export default function Register({navigation})

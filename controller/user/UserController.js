@@ -1,4 +1,4 @@
-import api from '../../config/Axios';
+import api from "../../config/Axios.js";
 
 export default class UserController {
 

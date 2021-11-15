@@ -1,15 +1,18 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, } from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 import Login from './view/Login';
 import Register from './view/Register';
 import Home from './view/Home';
 import ImagePickerExample from './view/ImagePickerExample';
-
-//import Home2 from './view/Home2';
+import Produtos from './view/Produto/Produtos';
+import NovoProduto from './view/Produto/Novo';
 
 const Stack = createNativeStackNavigator();
+
+
 
 function App() {
   return (
@@ -26,15 +29,6 @@ function App() {
         }}
           />
 
-        <Stack.Screen name="Home" component={Home} 
-            options={{ title: 'Home', 
-            headerStyle: {backgroundColor: '#e7305b'}, 
-            headerTintColor: '#fff',
-            headerTitleStyle: {fontWeight: 'bold'},
-            headerTitleAlign: 'center',
-        }}
-          />
-        
         <Stack.Screen name="Register" component={Register} 
             options={{ title: 'Crie Uma Conta', 
             headerStyle: {backgroundColor: '#e7305b'}, 
@@ -42,16 +36,67 @@ function App() {
             headerTitleStyle: {fontWeight: 'bold'},
             headerTitleAlign: 'center',
         }}
-          />
+        />
+
+        <Stack.Screen name="Home" component={Home}
+        
+          options={({ navigation, route }) => ({
+            title: 'Home',
+            headerStyle: {backgroundColor: '#e7305b'}, 
+            headerTintColor: '#fff',
+            headerTitleStyle: {fontWeight: 'bold'},
+            headerTitleAlign: 'center',
+            headerRight: () => (
+              <view>
+                  <Text style={styles.headerRight} onPress={() => navigation.navigate('Produtos')}>Meus Produtos</Text>
+                  <Ionicons
+                      name={'person-outline'}
+                      size={25}
+                      color={'white'}
+                      style={{ marginRight: 15 }}
+                      onPress={() => navigation.navigate('Produtos')}
+                    />
+                </view>
+            ),
+            })}
+        />
           
-          <Stack.Screen name="ImagePickerExample" component={ImagePickerExample} 
+        <Stack.Screen name="ImagePickerExample" component={ImagePickerExample} 
             options={{ title: 'Crie Uma Conta', 
             headerStyle: {backgroundColor: '#e7305b'}, 
             headerTintColor: '#fff',
             headerTitleStyle: {fontWeight: 'bold'},
             headerTitleAlign: 'center',
         }}
-          />
+        />
+
+        <Stack.Screen name="Produtos" component={Produtos} 
+            options={({ navigation, route }) => ({
+            title: 'Todos os Produtos',
+            headerStyle: {backgroundColor: '#e7305b'}, 
+            headerTintColor: '#fff',
+            headerTitleStyle: {fontWeight: 'bold'},
+            headerTitleAlign: 'center',
+              headerRight: () => (
+                <Ionicons
+                  name={'ios-add-circle'}
+                  size={25}
+                  color={'white'}
+                  style={{ marginRight: 15 }}
+                  onPress={() => navigation.navigate('NovoProduto')}
+                />
+              ),
+            })}
+        />
+
+        <Stack.Screen name="NovoProduto" component={NovoProduto} 
+            options={{ title: 'Novo Produto', 
+            headerStyle: {backgroundColor: '#e7305b'}, 
+            headerTintColor: '#fff',
+            headerTitleStyle: {fontWeight: 'bold'},
+            headerTitleAlign: 'center',
+        }}
+        />
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -68,4 +113,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  headerRight: {
+    fontSize:25,
+    color: '#fff',
+    marginRight: 13
+  }
 });

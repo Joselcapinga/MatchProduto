@@ -1,3 +1,5 @@
+import api from "../../config/Axios.js";
+
 export default class RegisterController {
 
     //var
@@ -17,7 +19,6 @@ export default class RegisterController {
 
     constructor(name, email, senha, confSenha)
     {
-        
         this.name = name;
         this.email = email;
         this.senha = senha;
@@ -34,7 +35,6 @@ export default class RegisterController {
     //validando os imputs
     validaInputs()
     {
-
         if( name === null && this.email === null && this.senha === null && this.confSenha === null){
             this.ErroName = "Preencha o campo nome";
             this.ErroEmail = "Preencha o campo email";
@@ -68,10 +68,19 @@ export default class RegisterController {
             return;
         }
         else if(!(this.senha === this.confSenha)){
-
             this.ErroSenhaDiferente = "Senhas diferentes";
-
         }
         else if(this.flag == false) return;
+   }
+
+   add()
+   {
+        /*const s = await api.post('/add', [
+            'nome' = this.name,
+            'email' = this.email,
+            'senha' = this.senha
+        ]);
+
+        return s;*/
    }
 }
