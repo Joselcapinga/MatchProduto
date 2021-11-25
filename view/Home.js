@@ -17,6 +17,10 @@ import UserController from '../controller/user/UserController';
 import styles from '../assets/style';
 import ModelProduto from '../model/Produto_schema';
 
+import * as SQLite from 'expo-sqlite';
+const db = SQLite.openDatabase("db.db");
+
+
 export default function Home({navigation})
 {
     const users = new UserController();

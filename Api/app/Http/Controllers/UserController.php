@@ -21,7 +21,6 @@ class UserController extends Controller
 
     public function add(Request $request)
     {
-    
         $user = new User;
         
         $user->name = $request->name;

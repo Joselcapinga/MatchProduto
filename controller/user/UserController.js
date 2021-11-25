@@ -8,7 +8,6 @@ export default class UserController {
     senha = String;
     ErroEmail = String;
     ErroSenha = String;
-    users = []; 
     flag = Boolean;
     auth = String;
 
@@ -17,7 +16,6 @@ export default class UserController {
     {
         this.email = null;
         this.senha = null;
-        this.users = [];
         this.ErroEmail = null;
         this.ErroSenha = null;
         this.flag = true;
@@ -60,26 +58,4 @@ export default class UserController {
         }  
         return 0;
    }
-
-   getUsers()
-   {
-     console.log(this.users);
-   }
-
-   /*Authentication(email, senha){
-
-    for(let i in this.users){
-
-      if( (email === this.users[i].email) &&  (senha === this.users[i].password ))
-      {
-        console.log(email);
-        return 1;
-        
-      }
-
-      //console.log(this.users[i].email)
-    }
-    return 0;
-
-   }*/
 }
