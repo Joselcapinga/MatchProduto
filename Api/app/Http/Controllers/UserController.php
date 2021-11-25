@@ -5,34 +5,45 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 
 class UserController extends Controller
 {
     public function all()
     {
-        return response()->json(['usuarios' => User::all(), 200]);
+        //return response()->json(['usuarios' => User::all(), 200]);
+        $users = User::all();
+        return response()->json($users);
     }
 
     public function add(Request $request)
     {
-       /* $validator = Validator::make($request->all(), [
-            'nome' => 'required',
-            'email' => 'required|email',
-            'senha' => 'required',
-        ]);
+    
+        $user = new User;
         
-        if($validator->fails()){
-            return response()->json(['error' => $validator->erros()], 200);
-        }
-        */
-        $user = new User();
-        
-        $user->name = $request->nome;
+        $user->name = $request->name;
         $user->email = $request->email;
+        //$user->password = Hash::make($request->senha);
         $user->password = $request->senha;
 
         $user->save();
+
+        return $request;
+        //return response()->json(['user' => $request, 200]);
+        
+    }
+
+    public function user(Request $request)
+    {
+      $user = User::where('email', $request['email'])->get();
+      return response()->json(['user' => $user, 200]);
+    }
+
+    public function auth(Request $request)
+    {  
         
     }
 }

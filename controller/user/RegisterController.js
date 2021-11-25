@@ -1,4 +1,7 @@
-import api from "../../config/Axios.js";
+import axios from 'axios';
+import api from '../../config/Axios.js';
+
+
 
 export default class RegisterController {
 
@@ -33,7 +36,7 @@ export default class RegisterController {
     }
 
     //validando os imputs
-    validaInputs()
+    AddRegister()
     {
         if( name === null && this.email === null && this.senha === null && this.confSenha === null){
             this.ErroName = "Preencha o campo nome";
@@ -41,7 +44,7 @@ export default class RegisterController {
             this.ErroSenha = "Preencha o campo senha";
             this.ErroConfirmeSenha = "Preencha o campo confirmação da senha";
             this.flag = false
-            return;
+            return 0;
         }
         if(this.name === null ){
            this.ErroName = "Preencha o campo nome";
@@ -59,28 +62,28 @@ export default class RegisterController {
            this.ErroConfirmeSenha = "Preencha o campo comfirme senha";
            this.flag = false;
         }
-
         //validando se as senhas são iguais
         if(this.flag === true && this.senha === this.confSenha)
         {
-            this.flag = true;
-            alert('Registrado com sucesso!'); 
-            return;
+            this.add();
+            //alert('Registrado com sucesso!'); 
+            return 1;
         }
         else if(!(this.senha === this.confSenha)){
             this.ErroSenhaDiferente = "Senhas diferentes";
         }
-        else if(this.flag == false) return;
+        return 0;
    }
-
+   //novo usuário
    add()
    {
-        /*const s = await api.post('/add', [
-            'nome' = this.name,
-            'email' = this.email,
-            'senha' = this.senha
-        ]);
-
-        return s;*/
+    api.post("add", {'name':this.name,'email': this.email,'senha':this.senha}).then(res => {
+        const user = res.data;
+        console.log(user);
+      });
    }
+
+   
+
+   
 }

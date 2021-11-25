@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
-import Login from './view/Login';
-import Register from './view/Register';
+import Login from './view/Auth/Login';
+import Register from './view/Auth/Register';
 import Home from './view/Home';
 import ImagePickerExample from './view/ImagePickerExample';
 import Produtos from './view/Produto/Produtos';
@@ -47,7 +47,7 @@ function App() {
             headerTitleStyle: {fontWeight: 'bold'},
             headerTitleAlign: 'center',
             headerRight: () => (
-              <view>
+              <>
                   <Text style={styles.headerRight} onPress={() => navigation.navigate('Produtos')}>Meus Produtos</Text>
                   <Ionicons
                       name={'person-outline'}
@@ -56,7 +56,7 @@ function App() {
                       style={{ marginRight: 15 }}
                       onPress={() => navigation.navigate('Produtos')}
                     />
-                </view>
+                </>
             ),
             })}
         />

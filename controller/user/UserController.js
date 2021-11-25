@@ -1,4 +1,6 @@
-import api from "../../config/Axios.js";
+import React, { useState, useEffect } from 'react';
+//import axios from "axios";
+import api from '../../config/Axios';
 
 export default class UserController {
 
@@ -7,6 +9,9 @@ export default class UserController {
     ErroEmail = String;
     ErroSenha = String;
     users = []; 
+    flag = Boolean;
+    auth = String;
+
 
     constructor(email, senha)
     {
@@ -15,57 +20,66 @@ export default class UserController {
         this.users = [];
         this.ErroEmail = null;
         this.ErroSenha = null;
+        this.flag = true;
+        //this.getUsers()
+        //this.Authentication('ana@gmail.com', '123456');
     }
 
-    validaInputs(email, senha){
-
+    validaInputs(users, email, senha)
+    {
+        //console.log(users)
         this.email = email;
         this.senha = senha;
 
-        if( this.email === null && this.senha === null){
+        if( this.email === null && this.senha === null)
+        {
             this.ErroEmail = "Preencha o campo email";
             this.ErroSenha = "Preencha o campo senha";
-            return
+            console.log("todos vazios");
+            return 0;
         }
-        //else {this.loginValidate(); return}
-        
-        if(this.email === null)
-            this.ErroEmail = "Preencha o campo email";
-        if(this.senha === null)
-            this.ErroSenha = "Preencha o campo senha";
+        if(this.email === null){
+          this.ErroEmail = "Preencha o campo email";
+          this.flag = false;
+        }
+        if(this.senha === null){
+          this.ErroSenha = "Preencha o campo senha";
+          this.flag = false;
+        }
+        console.log("meio")
+        if(this.flag == 1){
+          console.log("entrou")
+          for(let i in users){
+            if( (email === users[i].email) &&  (senha === users[i].password ))
+            {
+              console.log(email);
+              console.log(senha);
+              return 1;
+            }
+          }
+        }  
+        return 0;
    }
 
-   getEmail(){return this.email;}
-
-
-   loginValidate()
+   getUsers()
    {
-      /*const auth = getAuth();
-      signInWithEmailAndPassword(auth, email, senha)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorCode, errorMessage);
-        return
-      });*/
+     console.log(this.users);
+   }
 
-      if(this.email === "joselc@gmail.com" && this.senha === "123456")
+   /*Authentication(email, senha){
+
+    for(let i in this.users){
+
+      if( (email === this.users[i].email) &&  (senha === this.users[i].password ))
       {
+        console.log(email);
         return 1;
+        
       }
-      else return 0;
-      //alert("login realizado com sucesso");
-   }
 
-   async AllUser()
-   {
-     const s = await api.get('users'); 
-     return  s.data.usuarios;      
-   } 
+      //console.log(this.users[i].email)
+    }
+    return 0;
 
+   }*/
 }
