@@ -2,6 +2,9 @@ Dados do Integrante
 Nome: José Lohame Capinha
 RA: 2111055
 
+Nome: Gabriel Coutinho 
+RA:1645218  
+
 Projeto MatchProduto
 
 App MP (Match de Produto), objetivo proporcionar um ambiente de cadastro e troca de 
