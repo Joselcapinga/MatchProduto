@@ -10,86 +10,103 @@ import {
     ScrollView,
     Image,
     Platform,
+    SafeAreaView,
 } from 'react-native';
 import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
+import {Camera, camera} from 'expo-camera';
 import styles from '../../assets/style';
+//import MapView from 'react-native-maps';
 
-import * as SQLite from 'expo-sqlite';
-const db = SQLite.openDatabase("database.db");
 
 export default function Novo({navigation})
 {
+  
+  //const [image, setImage] = useState(null);
+  const [nome, setNome] = useState(null);
+  const [descricao, setDescicao] = useState(null);
 
-    //const [image, setImage] = useState(null);
-    const [nome, setNome] = useState(null);
-    const [descricao, setDescicao] = useState(null);
+  const [image, setImage] = useState(null);
+  const [typeCamera, setTipoCamera] = useState(Camera.Constants.Type.front);
+  const [hasPermission, setHasPermission] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
-      useEffect(() => {
-        db.transaction(function (txn) {
-          txn.executeSql(
-            "SELECT * FROM produtos sqlite_master",
-            [],
-            function (tx, res) {
-              //console.log('item:', res.rows.length);
-              if (res.rows.length == 0) {
-                txn.executeSql('DROP TABLE produtos', []);
-                txn.executeSql(
-                  'CREATE TABLE IF NOT EXISTS produtos(id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR(255), descricao VARCHAR(255))',
-                  [],
-                );
-              }
-            },
-          );
-        });
-      }, []);
-
-      const getProdutos = (setUserFunc) => {
-        db.transaction(
-          tx => {
-            tx.executeSql(
-              'select * from produtos',
-              [],
-              (_, { rows: { _array } }) => {
-                setUserFunc(_array)
-              }
-            );
-          },
-          (t, error) => { console.log("db error load produtos"); console.log(error) },
-          (_t, _success) => { console.log("loaded produtos")}
-        );
+  //quando carregar a tela
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
       }
+      /*const {status} = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === 'granted');*/
 
-    //console.log(getProdutos)
+      //gps
+      /*let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);*/
 
-     function insertProduto(){
-      db.transaction( tx => {
-          tx.executeSql( 'insert into produtos (nome, descricao) values (?, ?, ?)', [nome, descricao] );
-          console.log(nome, descricao)
-        },
-        (t, error) => { console.log("db error insert produtos"); console.log(error);},
-      )
+    })();
+  }, []);
+
+  /*if(hasPermission === null){
+    return <View/>
+  }
+
+  if(hasPermission === false){
+    return <Text>Acesso negado !</Text>
+  }*/
+  //gps 
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+    console.log(result);
+    if (!result.cancelled) {
+      setImage(result.uri);
     }
+  };
 
     return(
 
-        <View style={stylesss.container}>
+        <View style={style2.container}>
             <TextInput
                 placeholder={'Nome'}
-                style={stylesss.input}
+                style={style2.input}
                 onChangeText={nome => setNome(nome)}
             />
-
             <TextInput
                 placeholder={'Descrição'}
-                style={stylesss.input}
+                style={style2.input}
                 onChangeText={descricao => setDescicao(descricao)}
             />
-            
+
+            <View style={style2.ViewImagem}>
+              {image && <Image source={{ uri: image }} style={style2.imagem}/>}
+            </View>
+            <Button title="Carrege sua imagem" onPress={pickImage} />
+
+
             <TouchableOpacity 
                     title="Cadastrar"
                     style={styles.ButtonLogin}
-                    onPress={() => insertProduto()} 
                     >
                     <Text style={styles.textbuttonLogin}>Cadastrar</Text>
                 </TouchableOpacity>
@@ -98,7 +115,7 @@ export default function Novo({navigation})
     );
 }
 
-const stylesss = StyleSheet.create({
+const style2 = StyleSheet.create({
     container: {
       flex: 1,
       paddingTop: Constants.statusBarHeight,
@@ -119,5 +136,22 @@ const stylesss = StyleSheet.create({
       padding: 10,
       marginVertical: 5,
     },
+    ViewImagem: {
+      width: 400, 
+      height: 400,
+      backgroundColor:"beige",
+      borderWidth: 2, 
+      marginBottom: 20,
+      //flex: 0.3,
+  },
+  imagem: {
+      width: 400, 
+      height: 400,
+      resizeMode: 'stretch'
+  },
+  map: {
+    width: 50,
+    height:50,
+  },
 
   });

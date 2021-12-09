@@ -1,8 +1,6 @@
 import axios from 'axios';
 import api from '../../config/Axios.js';
 
-
-
 export default class RegisterController {
 
     //var
@@ -77,10 +75,14 @@ export default class RegisterController {
    //novo usuário
    add()
    {
+    
     api.post("add", {'name':this.name,'email': this.email,'senha':this.senha}).then(res => {
         const user = res.data;
         console.log(user);
+        
       });
+
+      
    }
 
    

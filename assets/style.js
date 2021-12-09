@@ -71,6 +71,19 @@ const styles = StyleSheet.create({
     },
     textErro:{
         color:"#FF0000",
+    },
+    ViewImagem: {
+        width: 400, 
+        height: 400,
+        backgroundColor:"beige",
+        borderWidth: 2, 
+        marginBottom: 20,
+        //flex: 0.3,
+    },
+    imagem: {
+        width: 400, 
+        height: 400,
+        resizeMode: 'stretch'
     }
 
 

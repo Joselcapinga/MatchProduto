@@ -9,10 +9,9 @@ export default class UserController {
     ErroEmail = String;
     ErroSenha = String;
     flag = Boolean;
-    auth = String;
+    auth = Boolean;
 
-
-    constructor(email, senha)
+    constructor()
     {
         this.email = null;
         this.senha = null;
@@ -23,13 +22,13 @@ export default class UserController {
         //this.Authentication('ana@gmail.com', '123456');
     }
 
-    validaInputs(users, email, senha)
+    validaInputs(email, senha)
     {
         //console.log(users)
         this.email = email;
         this.senha = senha;
 
-        if( this.email === null && this.senha === null)
+       if( this.email === null && this.senha === null)
         {
             this.ErroEmail = "Preencha o campo email";
             this.ErroSenha = "Preencha o campo senha";
@@ -44,18 +43,22 @@ export default class UserController {
           this.ErroSenha = "Preencha o campo senha";
           this.flag = false;
         }
-        console.log("meio")
-        if(this.flag == 1){
-          console.log("entrou")
-          for(let i in users){
+        
+        if(this.flag === true){
+          //console.log("entrou")
+          /*for(let i in users){
             if( (email === users[i].email) &&  (senha === users[i].password ))
             {
               console.log(email);
               console.log(senha);
               return 1;
             }
-          }
+          }*/
+         // console.log("meio")
+          //this.getUserSenha();
+          return 1;
         }  
+        
         return 0;
    }
 }

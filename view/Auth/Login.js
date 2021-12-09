@@ -22,30 +22,37 @@ export default function Login({navigation})
   const [erroSenha, setErroSenha] = useState(null);
   
   const [users, setUsers] = useState(null);
-  const [flagAuth, setFlagAuth] = useState(null);
+  const [userAuth, setUserAuth] = useState(null);
 
   //todos os usuários da api
-  useEffect(() => {
+  /*useEffect(() => {
       api.get('users').then((response) => setUsers(response.data)).catch((err) =>{
           console.error("Ops! ocorreu um error"+ err);
       });
-  }, []);
+  }, []);*/
 
   //console.table(users);
-  const User = new UserController(email, senha);
+  const User = new UserController();
 
   function login()
   {
-    if(User.validaInputs(users, email, senha) === 1){
-        
-        navigation.navigate('Home');   
+    if(User.validaInputs(email, senha) === 1){  
+
+        api.post('auth', {'email':email,'senha':senha}).then((response) => setUserAuth(response.data)).catch((err) =>{
+            console.error("Ops! ocorreu um error"+ err);
+        });
+       // if(userAuth ){
+
+            console.log(userAuth)
+            //navigation.navigate('Home');
+       // }
+        //else return;
     }
     else{
         setErroEmail(User.ErroEmail);
         setErroSenha(User.ErroSenha);
     }
   } 
-
 
     return (
         <View style={styles.FormContext}>

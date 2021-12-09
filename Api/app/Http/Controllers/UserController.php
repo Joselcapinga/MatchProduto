@@ -24,10 +24,9 @@ class UserController extends Controller
         $user = new User;
         
         $user->name = $request->name;
-        $user->email = $request->email;
+        $user->descricao = $request->email;
         //$user->password = Hash::make($request->senha);
-        $user->password = $request->senha;
-
+        //$user->password = $request->senha;
         $user->save();
 
         return $request;
@@ -43,6 +42,12 @@ class UserController extends Controller
 
     public function auth(Request $request)
     {  
-        
+        $user = DB::table('users')->where('email', '=', $request['email'])->where('password', '=', $request['senha'])->get();
+        //if($user->count() > 0) 
+       // return 1;
+        if($user->count() > 0){
+            return $user->id;
+        }
+        return -1;
     }
 }

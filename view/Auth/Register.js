@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Button, ScrollView} from 'react-native';
-
+import firebase from '../../firebase';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/firebase-auth';
 import RegisterController from '../../controller/user/RegisterController';
 import {Iconicons} from '@expo/vector-icons';
 import styles from '../../assets/style';
+
 
 export default function Register({navigation})
 {
@@ -21,12 +23,12 @@ export default function Register({navigation})
     const [erroSenhaDiferente, setErroSenhaDiferente] = useState(null);
 
     const User = new RegisterController(name, email, senha, confSenha);
-    
+
     function register_user()
     {
-        if( User.AddRegister() == 1)
+        if(User.AddRegister() == 1)
         {
-            navigation.navigate('Home');
+            //navigation.navigate('Home');
         }
         setErroName(User.ErroName);
         setErroEmail(User.ErroEmail);
@@ -35,6 +37,25 @@ export default function Register({navigation})
         setErroSenhaDiferente(User.ErroSenhaDiferente);
     }
 
+    function regist()
+    {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, senha)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(errorCode, errorMessage);
+          return
+        });
+  
+        alert("usuário cadastrado com sucesso !");
+    }
+    
     return (
 
         <View style={styles.FormContext}>
